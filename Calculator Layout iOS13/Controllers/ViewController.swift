@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayLabel: UILabel!
     
     private var isFinishedTyping = true
+    private var calculator = CalculatorModel()
     
     private var displayValue: Double {
         get {
@@ -35,17 +36,8 @@ class ViewController: UIViewController {
         
         isFinishedTyping = true
         
-        if let culcMethod = sender.currentTitle {
-            switch culcMethod {
-            case "+/-":
-                displayValue *= -1
-                break
-            case "%":
-                displayValue /= 100
-                break
-            default:
-                displayLabel.text = "0"
-            }
+        if let calcMethod = sender.currentTitle {
+            displayValue = calculator.calculate(symbol: calcMethod, number: displayValue)
         }
         
         
